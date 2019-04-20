@@ -6888,6 +6888,7 @@ broken-packages:
   - minesweeper
   - miniforth
   - minilens
+  - minilight
   - minimung
   - minio-hs
   - minions
@@ -6895,6 +6896,7 @@ broken-packages:
   - miniplex
   - minirotate
   - ministg
+  - minitypeset-opengl
   - minst-idx
   - mios
   - mirror-tweet
@@ -7184,6 +7186,7 @@ broken-packages:
   - network-server
   - network-service
   - network-simple-sockaddr
+  - network-simple-wss
   - network-stream
   - network-topic-models
   - network-transport-amqp
@@ -7954,6 +7957,7 @@ broken-packages:
   - rascal
   - Rasenschach
   - rating-chgk-info
+  - rattle
   - rattletrap
   - raven-haskell-scotty
   - raw-feldspar
@@ -8223,6 +8227,7 @@ broken-packages:
   - safe-failure-cme
   - safe-freeze
   - safe-globals
+  - safe-json
   - safe-lazy-io
   - safe-length
   - safe-money
@@ -8478,6 +8483,8 @@ broken-packages:
   - shellish
   - shellmate
   - shellmate-extras
+  - shh
+  - shh-extras
   - shivers-cfg
   - shoap
   - shopify
@@ -8526,6 +8533,7 @@ broken-packages:
   - simple-tar
   - simple-templates
   - simple-ui
+  - simple-units
   - simple-vec3
   - simple-zipper
   - simpleargs
@@ -9834,6 +9842,7 @@ broken-packages:
   - yam
   - yam-datasource
   - yam-job
+  - yam-redis
   - yam-servant
   - yam-transaction-odbc
   - yam-web
