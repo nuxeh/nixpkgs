@@ -23243,6 +23243,8 @@ in
 
   ripcord = qt5.callPackage ../applications/networking/instant-messengers/ripcord { };
 
+  ringcentral-meetings = libsForQt5.callPackage ../applications/networking/instant-messengers/ringcentral-meetings { };
+
   ripser = callPackage ../applications/science/math/ripser { };
 
   rkdeveloptool = callPackage ../misc/rkdeveloptool { };
