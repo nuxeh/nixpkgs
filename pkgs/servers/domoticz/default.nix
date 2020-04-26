@@ -1,4 +1,4 @@
-{ stdenv, fetchzip, cmake, python3 }:
+{ stdenv, fetchzip, cmake, python3, openssl_1_0_2, pkgconfig }:
 
 stdenv.mkDerivation rec {
   pname = "demoticz";
@@ -9,9 +9,11 @@ stdenv.mkDerivation rec {
      sha256 = "1cc9l5r9f4jczmxn9a9chh9nap2njs8r69wkn0zmwqwcpzb5qna5";
    };
 
-  nativeBuildInputs = [ cmake python3 ];
+  buildInputs = [ openssl_1_0_2 python3 ];
+  nativeBuildInputs = [ cmake pkgconfig ];
 
   cmakeFlags = [
+    "-DCMAKE_BUILD_TYPE=Release"
   ];
 
   meta = with stdenv.lib; {
