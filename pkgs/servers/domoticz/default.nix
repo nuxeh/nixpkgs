@@ -1,4 +1,4 @@
-{ stdenv, fetchzip, cmake}:
+{ stdenv, fetchzip, cmake, python3 }:
 
 stdenv.mkDerivation rec {
   pname = "demoticz";
@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
      sha256 = "1cc9l5r9f4jczmxn9a9chh9nap2njs8r69wkn0zmwqwcpzb5qna5";
    };
 
-  nativeBuildInputs = [ cmake ];
+  nativeBuildInputs = [ cmake python3 ];
 
   cmakeFlags = [
   ];
