@@ -17,10 +17,10 @@ stdenv.mkDerivation rec {
   pname = "demoticz";
   version = "2020.1";
 
-   src = fetchzip {
-     url = "https://github.com/domoticz/domoticz/archive/${version}.tar.gz";
-     sha256 = "1cc9l5r9f4jczmxn9a9chh9nap2njs8r69wkn0zmwqwcpzb5qna5";
-   };
+  src = fetchzip {
+    url = "https://github.com/domoticz/domoticz/archive/${version}.tar.gz";
+    sha256 = "1cc9l5r9f4jczmxn9a9chh9nap2njs8r69wkn0zmwqwcpzb5qna5";
+  };
 
   buildInputs = [
     openssl
@@ -37,6 +37,8 @@ stdenv.mkDerivation rec {
     cmake
     pkgconfig
   ];
+
+  OPENSSL_ROOT_DIR = "${pkgs.openssl.dev}";
 
   cmakeFlags = [
     "-DCMAKE_BUILD_TYPE=Release"
