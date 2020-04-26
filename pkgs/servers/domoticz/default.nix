@@ -3,7 +3,7 @@
   cmake,
   python3,
   openssl,
-  pkgconfig,
+  pkg-config,
   mosquitto,
   lua5_3,
   sqlite,
@@ -35,7 +35,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [
     cmake
-    pkgconfig
+    pkg-config
   ];
 
   cmakeFlags = [
