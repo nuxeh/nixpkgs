@@ -4,7 +4,10 @@ stdenv.mkDerivation rec {
   pname = "demoticz";
   version = "2020.1";
 
-  # src = ...
+   src = fetchzip {
+     url = "https://github.com/domoticz/domoticz/archive/${version}.tar.gz";
+     sha256 = "1cc9l5r9f4jczmxn9a9chh9nap2njs8r69wkn0zmwqwcpzb5qna5";
+   };
 
   nativeBuildInputs = [ cmake ];
 
