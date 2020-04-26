@@ -1,4 +1,4 @@
-{ stdenv, fetchzip, cmake, python3, openssl_1_0_2, pkgconfig }:
+{ stdenv, fetchzip, cmake, python3, openssl, pkgconfig, mosquitto, lua5_3, sqlite }:
 
 stdenv.mkDerivation rec {
   pname = "demoticz";
@@ -9,11 +9,14 @@ stdenv.mkDerivation rec {
      sha256 = "1cc9l5r9f4jczmxn9a9chh9nap2njs8r69wkn0zmwqwcpzb5qna5";
    };
 
-  buildInputs = [ openssl_1_0_2 python3 ];
+  buildInputs = [ openssl python3 mosquitto lua5_3 sqlite ];
   nativeBuildInputs = [ cmake pkgconfig ];
 
   cmakeFlags = [
     "-DCMAKE_BUILD_TYPE=Release"
+    "-DUSE_BUILTIN_MQTT=false"
+    "-DUSE_BUILTIN_LUA=false"
+    "-DUSE_BUILTIN_SQLITE=false"
   ];
 
   meta = with stdenv.lib; {
