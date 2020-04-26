@@ -47,7 +47,7 @@ stdenv.mkDerivation rec {
     "-DUSE_BUILTIN_ZLIB=false"
     "-DUSE_BUILTIN_MINIZIP=false"
     "-DUSE_STATIC_OPENZWAVE=false"
-    "-DOPENSSL_ROOT_DIR=${openssl.dev}"
+    "-DOPENSSL_ROOT_DIR=${openssl}"
   ];
 
   meta = with stdenv.lib; {
