@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
   };
 
   buildInputs = [
-    openssl
+    #openssl
     python3
     mosquitto
     lua5_3
