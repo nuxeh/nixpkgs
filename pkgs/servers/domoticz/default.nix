@@ -38,8 +38,6 @@ stdenv.mkDerivation rec {
     pkgconfig
   ];
 
-  OPENSSL_ROOT_DIR = "${openssl.dev}";
-
   cmakeFlags = [
     "-DCMAKE_BUILD_TYPE=Release"
     "-DUSE_BUILTIN_MQTT=false"
@@ -49,6 +47,7 @@ stdenv.mkDerivation rec {
     "-DUSE_BUILTIN_ZLIB=false"
     "-DUSE_BUILTIN_MINIZIP=false"
     "-DUSE_STATIC_OPENZWAVE=false"
+    "-DOPENSSL_ROOT_DIR=${openssl.dev}"
   ];
 
   meta = with stdenv.lib; {
