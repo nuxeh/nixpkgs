@@ -13,7 +13,7 @@
   boost,
   curl,
   git,
-  libusb1
+  libusb
 }:
 
 stdenv.mkDerivation rec {
@@ -37,7 +37,7 @@ stdenv.mkDerivation rec {
     zlib
     curl
     git
-    libusb1
+    libusb
   ];
 
   nativeBuildInputs = [
