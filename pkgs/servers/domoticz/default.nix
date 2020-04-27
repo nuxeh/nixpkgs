@@ -12,7 +12,8 @@
   minizip,
   openzwave,
   boost,
-  curl
+  curl,
+  git
 }:
 
 stdenv.mkDerivation rec {
@@ -36,6 +37,7 @@ stdenv.mkDerivation rec {
     boost
     zlib
     curl
+    git
   ];
 
   nativeBuildInputs = [
