@@ -9,11 +9,11 @@
   sqlite,
   jsoncpp,
   zlib,
-  minizip,
   openzwave,
   boost,
   curl,
-  git
+  git,
+  libusb1
 }:
 
 stdenv.mkDerivation rec {
@@ -32,12 +32,12 @@ stdenv.mkDerivation rec {
     lua5_3
     sqlite
     jsoncpp
-    minizip
-    openzwave
+    #openzwave
     boost
     zlib
     curl
     git
+    libusb1
   ];
 
   nativeBuildInputs = [
@@ -52,10 +52,10 @@ stdenv.mkDerivation rec {
     "-DUSE_BUILTIN_SQLITE=false"
     "-DUSE_BUILTIN_JSONCPP=false"
     "-DUSE_BUILTIN_ZLIB=false"
-    "-DUSE_BUILTIN_MINIZIP=false"
-    "-DUSE_STATIC_OPENZWAVE=false"
+    #"-DUSE_STATIC_OPENZWAVE=false"
     "-DUSE_OPENSSL_STATIC=false"
     "-DUSE_STATIC_BOOST=false"
+    "-DUSE_BUILTIN_MINIZIP=true"
   ];
 
   meta = with stdenv.lib; {
