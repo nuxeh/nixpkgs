@@ -9,7 +9,6 @@
   sqlite,
   jsoncpp,
   zlib,
-  openzwave,
   boost,
   curl,
   git,
@@ -32,7 +31,6 @@ stdenv.mkDerivation rec {
     lua5_3
     sqlite
     jsoncpp
-    #openzwave
     boost
     zlib
     curl
@@ -52,7 +50,6 @@ stdenv.mkDerivation rec {
     "-DUSE_BUILTIN_SQLITE=false"
     "-DUSE_BUILTIN_JSONCPP=false"
     "-DUSE_BUILTIN_ZLIB=false"
-    #"-DUSE_STATIC_OPENZWAVE=false"
     "-DUSE_OPENSSL_STATIC=false"
     "-DUSE_STATIC_BOOST=false"
     "-DUSE_BUILTIN_MINIZIP=true"
