@@ -11,7 +11,8 @@
   zlib,
   minizip,
   openzwave,
-  boost
+  boost,
+  curl
 }:
 
 stdenv.mkDerivation rec {
@@ -33,6 +34,8 @@ stdenv.mkDerivation rec {
     minizip
     openzwave
     boost
+    zlib
+    curl
   ];
 
   nativeBuildInputs = [
@@ -50,6 +53,7 @@ stdenv.mkDerivation rec {
     "-DUSE_BUILTIN_MINIZIP=false"
     "-DUSE_STATIC_OPENZWAVE=false"
     "-DUSE_OPENSSL_STATIC=false"
+    "-DUSE_STATIC_BOOST=false"
   ];
 
   meta = with stdenv.lib; {
