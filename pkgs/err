@@ -1,0 +1,19 @@
+nix-build shell.nix
+In file included from /nix/store/vs4vj1yzqj1bkcqkf3b6sxm6jfy1gb4j-python3-3.7.7/include/python3.7m/Python.h:44,
+                 from /build/source/main/../hardware/plugins/DelayedLink.h:12,
+                 from /build/source/main/../hardware/plugins/PluginMessages.h:3,
+                 from /build/source/main/EventSystem.cpp:48:
+/nix/store/kha8j4ai7zr0d2kpf8yxdq89s2qzwbs9-minizip-1.2.11/include/minizip/crypt.h:35:53: error: 'z_crc_t' does not name a type; did you mean 'cc_t'?
+   35 | static int decrypt_byte(unsigned long* pkeys, const z_crc_t* pcrc_32_tab)
+      |                                                     ^~~~~~~
+      |                                                     cc_t
+/nix/store/kha8j4ai7zr0d2kpf8yxdq89s2qzwbs9-minizip-1.2.11/include/minizip/crypt.h:48:51: error: 'z_crc_t' does not name a type; did you mean 'cc_t'?
+   48 | static int update_keys(unsigned long* pkeys,const z_crc_t* pcrc_32_tab,int c)
+      |                                                   ^~~~~~~
+      |                                                   cc_t
+/nix/store/kha8j4ai7zr0d2kpf8yxdq89s2qzwbs9-minizip-1.2.11/include/minizip/crypt.h:65:69: error: 'z_crc_t' does not name a type; did you mean 'cc_t'?
+   65 | static void init_keys(const char* passwd,unsigned long* pkeys,const z_crc_t* pcrc_32_tab)
+      |                                                                     ^~~~~~~
+      |                                                                     cc_t
+make[2]: *** [CMakeFiles/domoticz.dir/build.make:169: CMakeFiles/domoticz.dir/main/EventSystem.cpp.o] Error 1
+  gnutls,
