@@ -10,7 +10,8 @@
   jsoncpp,
   zlib,
   minizip,
-  openzwave
+  openzwave,
+  boost
 }:
 
 stdenv.mkDerivation rec {
@@ -23,7 +24,7 @@ stdenv.mkDerivation rec {
   };
 
   buildInputs = [
-    #openssl
+    openssl
     python3
     mosquitto
     lua5_3
@@ -31,6 +32,7 @@ stdenv.mkDerivation rec {
     jsoncpp
     minizip
     openzwave
+    boost
   ];
 
   nativeBuildInputs = [
@@ -47,6 +49,7 @@ stdenv.mkDerivation rec {
     "-DUSE_BUILTIN_ZLIB=false"
     "-DUSE_BUILTIN_MINIZIP=false"
     "-DUSE_STATIC_OPENZWAVE=false"
+    "-DUSE_OPENSSL_STATIC=false"
   ];
 
   meta = with stdenv.lib; {
