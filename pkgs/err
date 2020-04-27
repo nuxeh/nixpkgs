@@ -17,3 +17,65 @@ In file included from /nix/store/vs4vj1yzqj1bkcqkf3b6sxm6jfy1gb4j-python3-3.7.7/
       |                                                                     cc_t
 make[2]: *** [CMakeFiles/domoticz.dir/build.make:169: CMakeFiles/domoticz.dir/main/EventSystem.cpp.o] Error 1
   gnutls,
+
+
+======
+
+
+[ 97%] Building CXX object CMakeFiles/domoticz.dir/tinyxpath/xml_util.cpp.o
+[ 98%] Building CXX object CMakeFiles/domoticz.dir/tinyxpath/xpath_expression.cpp.o
+[ 98%] Building CXX object CMakeFiles/domoticz.dir/tinyxpath/xpath_processor.cpp.o
+[ 99%] Building CXX object CMakeFiles/domoticz.dir/tinyxpath/xpath_stream.cpp.o
+[ 99%] Building CXX object CMakeFiles/domoticz.dir/tinyxpath/xpath_stack.cpp.o
+[ 99%] Building CXX object CMakeFiles/domoticz.dir/tinyxpath/xpath_static.cpp.o
+[100%] Building CXX object CMakeFiles/domoticz.dir/tinyxpath/xpath_syntax.cpp.o
+[100%] Building CXX object CMakeFiles/domoticz.dir/webserver/WebsocketHandler.cpp.o
+[100%] Building CXX object CMakeFiles/domoticz.dir/webserver/Websockets.cpp.o
+[100%] Linking CXX executable domoticz
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::EnableDisableDebug()':
+OpenZWave.cpp:(.text+0xe39): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0xe87): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0xeda): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0xf71): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0xfbf): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o:OpenZWave.cpp:(.text+0x1012): more undefined references to `OpenZWave::Options::Get()' follow
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::UpdateNodeEvent(OpenZWave::ValueID const&, int)':
+OpenZWave.cpp:(.text+0x1227): undefined reference to `OpenZWave::Manager::IsValueValid(OpenZWave::ValueID const&)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x134b): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::GetNodeValuesJson(unsigned int, unsigned char, Json::Value&, int)':
+OpenZWave.cpp:(.text+0x5435): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x56b9): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x56f4): undefined reference to `OpenZWave::Manager::GetValueHelp[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x622f): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x626a): undefined reference to `OpenZWave::Manager::GetValueHelp[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::AddValue(COpenZWave::NodeInfo*, OpenZWave::ValueID const&)':
+OpenZWave.cpp:(.text+0xc950): undefined reference to `OpenZWave::Manager::IsValueValid(OpenZWave::ValueID const&)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0xca04): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::OpenSerialConnector()':
+OpenZWave.cpp:(.text+0x10d5a): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x10da6): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x10e23): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x10ea0): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x10ee9): undefined reference to `OpenZWave::Options::Get()'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o:OpenZWave.cpp:(.text+0x11197): more undefined references to `OpenZWave::Options::Get()' follow
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::GetValueByCommandClass(unsigned char, unsigned char, unsigned char, OpenZWave::ValueID&)':
+OpenZWave.cpp:(.text+0x15299): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::SwitchLight(ZWaveBase::_tZWaveDevice*, int, int)':
+OpenZWave.cpp:(.text+0x15e1a): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::UpdateValue(COpenZWave::NodeInfo*, OpenZWave::ValueID const&)':
+OpenZWave.cpp:(.text+0x166e0): undefined reference to `OpenZWave::Manager::IsValueValid(OpenZWave::ValueID const&)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: OpenZWave.cpp:(.text+0x16767): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::EnableNodePoll(unsigned int, unsigned char, int)':
+OpenZWave.cpp:(.text+0x1c496): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/OpenZWave.cpp.o: in function `COpenZWave::ApplyNodeConfig(unsigned int, unsigned char, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+OpenZWave.cpp:(.text+0x215a5): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: CMakeFiles/domoticz.dir/hardware/openzwave/control_panel/ozwcp.cpp.o: in function `COpenZWaveControlPanel::web_get_values(int, TiXmlElement*)':
+ozwcp.cpp:(.text+0x1dbb): undefined reference to `OpenZWave::Manager::GetValueHelp[abi:cxx11](OpenZWave::ValueID const&, int)'
+/nix/store/sq2b0dqlq243mqn4ql5h36xmpplyy20k-binutils-2.31.1/bin/ld: ozwcp.cpp:(.text+0x1f9d): undefined reference to `OpenZWave::Manager::GetValueLabel[abi:cxx11](OpenZWave::ValueID const&, int)'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/domoticz.dir/build.make:4234: domoticz] Error 1
+make[1]: *** [CMakeFiles/Makefile2:99: CMakeFiles/domoticz.dir/all] Error 2
+make: *** [Makefile:152: all] Error 2
+builder for '/nix/store/3w3cpsac43fsr72yv9kahhhr1ncydn86-demoticz-2020.1.drv' failed with exit code 2
+error: build of '/nix/store/3w3cpsac43fsr72yv9kahhhr1ncydn86-demoticz-2020.1.drv' failed
+
