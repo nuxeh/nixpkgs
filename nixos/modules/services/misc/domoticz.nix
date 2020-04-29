@@ -70,8 +70,9 @@ in {
         Group = cfg.group;
         Restart = "always";
         ExecStart = ''
-          ${pkgs.domoticz}/bin/domoticz -userdata ${cfg.stateDir}
+          ${pkgs.domoticz}/domoticz -userdata ${cfg.stateDir}
         '';
+          #${pkgs.domoticz}/bin/domoticz -userdata ${cfg.stateDir}
       };
     };
 
