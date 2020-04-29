@@ -16,11 +16,12 @@
 }:
 
 stdenv.mkDerivation rec {
-  version = "2020.2";
+  pname = "demoticz";
+  version = "2020.1";
 
   src = fetchzip {
     url = "https://github.com/domoticz/domoticz/archive/${version}.tar.gz";
-    sha256 = "1b4pkw9qp7f5r995vm4xdnpbwi9vxjyzbnk63bmy1xkvbhshm0g3";
+    sha256 = "1cc9l5r9f4jczmxn9a9chh9nap2njs8r69wkn0zmwqwcpzb5qna5";
   };
 
   enableParallelBuilding = true;
