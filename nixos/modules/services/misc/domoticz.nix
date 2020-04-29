@@ -42,6 +42,18 @@ in {
         example = "/home/bob/.domoticz/";
       };
 
+      bind = mkOption {
+        type = types.str;
+        default = "0.0.0.0";
+        description = "IP address to bind to.";
+      };
+
+      port = mkOption {
+        type = types.int;
+        default = 8080;
+        description = "Port to bind to for HTTP, set to 0 to disable HTTP.";
+      };
+
     };
 
   };
@@ -70,9 +82,8 @@ in {
         Group = cfg.group;
         Restart = "always";
         ExecStart = ''
-          ${pkgs.domoticz}/domoticz -userdata ${cfg.stateDir}
+          ${pkgs.domoticz}/domoticz -userdata ${cfg.stateDir} -noupdates -www ${toString port} -wwwbind ${bind} -sslwww 0
         '';
-          #${pkgs.domoticz}/bin/domoticz -userdata ${cfg.stateDir}
       };
     };
 
