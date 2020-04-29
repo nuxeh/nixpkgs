@@ -57,7 +57,7 @@ stdenv.mkDerivation rec {
   ];
 
   postInstall = ''
-    wrapProgram $out/domoticz --set LD_LIBRARY_PATH ${pkgs.python3}/lib;
+    wrapProgram $out/domoticz --set LD_LIBRARY_PATH ${python3}/lib;
   '';
 
   meta = with stdenv.lib; {
