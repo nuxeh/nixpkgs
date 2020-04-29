@@ -1,5 +1,6 @@
 { stdenv,
   fetchgit,
+  makeWrapper,
   cmake,
   python3,
   openssl,
@@ -48,6 +49,7 @@ stdenv.mkDerivation rec {
   nativeBuildInputs = [
     cmake
     pkg-config
+    makeWrapper
   ];
 
   cmakeFlags = [
