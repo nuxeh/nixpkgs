@@ -77,6 +77,10 @@ in {
       description = pkgDesc;
       wantedBy = [ "multi-user.target" ];
       after = [ "network-online.target" ];
+      environment = {
+        # to cope with use of runtime linking using dlopen(3)
+        LD_LIBRARY_PATH = "${pkgs.python3}";
+      };
       serviceConfig = {
         User = cfg.user;
         Group = cfg.group;
