@@ -16,6 +16,7 @@
 }:
 
 stdenv.mkDerivation rec {
+  name = "domoticz";
   version = "2020.2";
 
   src = fetchzip {
