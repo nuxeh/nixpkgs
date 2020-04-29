@@ -79,6 +79,8 @@ in {
       after = [ "network-online.target" ];
       environment = {
         # to cope with use of runtime linking using dlopen(3)
+        # Python is already a required build-time dependency,
+        # so it should be present at runtime
         LD_LIBRARY_PATH = "${pkgs.python3}";
       };
       serviceConfig = {
