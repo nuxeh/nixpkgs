@@ -82,7 +82,7 @@ in {
         Group = cfg.group;
         Restart = "always";
         ExecStart = ''
-          ${pkgs.domoticz}/domoticz -userdata ${cfg.stateDir} -noupdates -www ${toString port} -wwwbind ${bind} -sslwww 0
+          ${pkgs.domoticz}/domoticz -userdata ${cfg.stateDir} -noupdates -www ${toString cfg.port} -wwwbind ${cfg.bind} -sslwww 0
         '';
       };
     };
