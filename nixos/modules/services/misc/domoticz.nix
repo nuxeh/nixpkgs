@@ -81,7 +81,7 @@ in {
         # to cope with use of runtime linking using dlopen(3)
         # Python is already a required build-time dependency,
         # so it should be present at runtime
-        LD_LIBRARY_PATH = "${pkgs.python3}";
+        LD_LIBRARY_PATH = "${pkgs.python3}/lib";
       };
       serviceConfig = {
         User = cfg.user;
