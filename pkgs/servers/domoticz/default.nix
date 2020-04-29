@@ -62,7 +62,7 @@ stdenv.mkDerivation rec {
   '';
 
   meta = with stdenv.lib; {
-    description = "Domoticz home automation system";
+    description = "Home automation system";
     longDescription = ''
       Domoticz is a home automation system that lets you monitor and configure
       various devices like: lights, switches, various sensors/meters like
