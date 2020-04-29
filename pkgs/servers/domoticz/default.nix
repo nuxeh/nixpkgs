@@ -12,7 +12,8 @@
   boost,
   curl,
   git,
-  libusb
+  libusb,
+  cereal
 }:
 
 stdenv.mkDerivation rec {
@@ -41,6 +42,7 @@ stdenv.mkDerivation rec {
     curl
     git
     libusb
+    cereal
   ];
 
   nativeBuildInputs = [
