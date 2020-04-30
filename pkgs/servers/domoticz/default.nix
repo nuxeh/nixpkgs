@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
   src = fetchgit {
     url = "https://github.com/domoticz/domoticz.git";
     rev = "aad65002eea99b8336cefd773e7422f0a7f1873f";
-    sha256 = "06vi9ambn285z8v7n9h85lcx77nvw1s9h78719fll5czzmm250xx";
+    sha256 = "1hv03jn2lnz14f542ayx3d9apxj8060i5rvzgki7czy3ahx1ls2w";
     deepClone = true;
     fetchSubmodules = true;
   };
