@@ -13,7 +13,7 @@
   boost,
   curl,
   git,
-  libusb,
+  libusb-compat-0_1,
   cereal
 }:
 
@@ -42,7 +42,7 @@ stdenv.mkDerivation rec {
     zlib
     curl
     git
-    libusb
+    libusb-compat-0_1
     cereal
   ];
 
