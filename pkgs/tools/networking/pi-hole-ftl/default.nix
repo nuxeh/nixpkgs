@@ -13,10 +13,15 @@ stdenv.mkDerivation rec {
     sha256 = "05bvwmfqg52ic7f95d419hnqnxlixnqzx2fi93ki3axxz1g56l6p";
   };
 
+  enableParallelBuilding = true;
+
   buildInputs = [
     nettle
     gmp
   ];
+
+  # disable static linking
+  makeFlags = [ "LIBS=\"-pthread -lrt -lhogweed -lgmp -lnettle\"" ];
 
   meta = with stdenv.lib; {
     description = "Pi-hole FTL engine";
