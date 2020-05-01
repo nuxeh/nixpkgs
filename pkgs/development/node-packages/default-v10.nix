@@ -128,6 +128,7 @@ nodePackages // {
     postInstall = ''
       # data dir is currently hard-coded in thelounge's module
       echo /var/lib/thelounge > $out/lib/node_modules/thelounge/.thelounge_home
+      touch $out/lib/node_modules/thelounge/.booboo
     '';
   };
 }
