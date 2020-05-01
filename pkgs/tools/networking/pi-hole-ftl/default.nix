@@ -21,7 +21,9 @@ stdenv.mkDerivation rec {
   ];
 
   # disable static linking
-  makeFlags = [ "LIBS=\"-pthread -lrt -lhogweed -lgmp -lnettle\"" ];
+  preBuild = ''
+    makeFlagsArray+=(LIBS="-pthread -lrt -lhogweed -lgmp -lnettle")
+'';
 
   meta = with stdenv.lib; {
     description = "Pi-hole FTL engine";
