@@ -5,7 +5,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  name = "pi-hole-ftl";
+  name = "pihole-ftl";
   version = "v4.3.1";
 
   src = fetchzip {
@@ -24,6 +24,11 @@ stdenv.mkDerivation rec {
   preBuild = ''
     makeFlagsArray+=(LIBS="-pthread -lrt -lhogweed -lgmp -lnettle")
 '';
+
+  installPhase = ''
+    mkdir -p $out/bin
+    cp pihole-FTL $out/bin
+  '';
 
   meta = with stdenv.lib; {
     description = "Pi-hole FTL engine";
