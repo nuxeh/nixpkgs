@@ -64,16 +64,8 @@ stdenv.mkDerivation rec {
     "-DUSE_BUILTIN_MINIZIP=true"
   ];
 
-  installPhase = ''
-    mkdir -p $out/share/domoticz
-    cp -r $src/www $out/share/domoticz/
-    cp -r $src/Config $out/share/domoticz
-    cp -r $src/scripts $out/share/domoticz
-    cp -r $src/plugins $out/share/domoticz
-
-    mkdir -p $out/bin
-    cp domoticz $out/bin
-    wrapProgram $out/bin/domoticz --set LD_LIBRARY_PATH ${python3}/lib;
+  postInstall = ''
+    wrapProgram $out/domoticz --set LD_LIBRARY_PATH ${python3}/lib;
   '';
 
   meta = with stdenv.lib; {
