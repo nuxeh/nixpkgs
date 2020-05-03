@@ -65,6 +65,12 @@ stdenv.mkDerivation rec {
   ];
 
   installPhase = ''
+    mkdir -p $out/share/domoticz
+    cp -r www $out/share/domoticz/
+    cp -r Config $out/share/domoticz
+    cp -r scripts $out/share/domoticz
+    cp -r plugins $out/share/domoticz
+
     mkdir -p $out/bin
     cp domoticz $out/bin
     wrapProgram $out/bin/domoticz --set LD_LIBRARY_PATH ${python3}/lib;
