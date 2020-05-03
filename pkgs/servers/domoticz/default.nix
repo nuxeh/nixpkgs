@@ -66,10 +66,10 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/share/domoticz
-    cp -r www $out/share/domoticz/
-    cp -r Config $out/share/domoticz
-    cp -r scripts $out/share/domoticz
-    cp -r plugins $out/share/domoticz
+    cp -r $src/www $out/share/domoticz/
+    cp -r $src/Config $out/share/domoticz
+    cp -r $src/scripts $out/share/domoticz
+    cp -r $src/plugins $out/share/domoticz
 
     mkdir -p $out/bin
     cp domoticz $out/bin
