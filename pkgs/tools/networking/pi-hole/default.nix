@@ -7,9 +7,12 @@ stdenv.mkDerivation rec {
   version = "v4.4";
 
   src = fetchzip {
-    url = "https://github.com/pi-hole/FTL/archive/${version}.tar.gz";
+    url = "https://github.com/pi-hole/${name}/archive/${version}.tar.gz";
     sha256 = "12h6xri08x6fm6x3ixhr7yacl56azgw6ab7cznlr4ykbphwrgy70";
   };
+
+  dontConfigure = true;
+  dontBuild = true;
 
   installPhase = ''
     mkdir -p $out/bin
@@ -19,8 +22,6 @@ stdenv.mkDerivation rec {
     cp gravity.sh $out/opt/pihole
     cp advanced/Scripts/*.sh $out/opt/pihole
     cp advanced/Scripts/COL_TABLE $out/opt/pihole
-
-    cp  $out/opt/pihole
 
     mkdir -p $out/etc/bash_completion.d/
     cp advanced/bash-completion/pihole $out/etc/bash_completion.d/
