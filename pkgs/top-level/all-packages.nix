@@ -2907,6 +2907,8 @@ in
 
   picotts = callPackage ../tools/audio/picotts { };
 
+  pi-hole-ftl = callPackage ../tools/networking/pi-hole-ftl { };
+
   wgetpaste = callPackage ../tools/text/wgetpaste { };
 
   dirmngr = callPackage ../tools/security/dirmngr { };
