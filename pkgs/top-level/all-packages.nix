@@ -2907,6 +2907,8 @@ in
 
   picotts = callPackage ../tools/audio/picotts { };
 
+  pihole = callPackage ../tools/networking/pihole { };
+
   pihole-ftl = callPackage ../tools/networking/pihole-ftl { };
 
   wgetpaste = callPackage ../tools/text/wgetpaste { };
