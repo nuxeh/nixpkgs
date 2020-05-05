@@ -34,7 +34,9 @@ stdenv.mkDerivation rec {
     description = "Pi-hole FTL engine";
     homepage = "https://github.com/pi-hole/FTL";
     license = licenses.eupl11; ## TODO eupl12
-    maintainers = with maintainers; [ edcragg ];
+    #maintainers = with maintainers; [ edcragg ];
     platforms = platforms.all;
   };
 }
+# https://github.com/pi-hole/FTL/blob/master/Makefile
+# /sbin/setcap CAP_NET_BIND_SERVICE,CAP_NET_RAW,CAP_NET_ADMIN+eip $(prefix)/bin/pihole-FTL
