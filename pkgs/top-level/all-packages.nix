@@ -3299,6 +3299,8 @@ in
 
   picotts = callPackage ../tools/audio/picotts { };
 
+  pihole-ftl = callPackage ../tools/networking/pihole-ftl { };
+
   wgetpaste = callPackage ../tools/text/wgetpaste { };
 
   dirmngr = callPackage ../tools/security/dirmngr { };
