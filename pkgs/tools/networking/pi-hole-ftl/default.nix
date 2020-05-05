@@ -5,7 +5,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  name = "pihole-ftl";
+  name = "pi-hole-ftl";
   version = "v4.3.1";
 
   src = fetchzip {
