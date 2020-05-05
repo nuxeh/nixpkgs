@@ -57,5 +57,3 @@ in stdenv.mkDerivation rec {
     platforms = platforms.all;
   };
 }
-# https://github.com/pi-hole/FTL/blob/master/Makefile
-# /sbin/setcap CAP_NET_BIND_SERVICE,CAP_NET_RAW,CAP_NET_ADMIN+eip $(prefix)/bin/pihole-FTL
