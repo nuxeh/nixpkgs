@@ -1,6 +1,4 @@
-{ stdenv,
-  fetchzip,
-}:
+{ stdenv, fetchzip }:
 
 stdenv.mkDerivation rec {
   name = "pi-hole-adminlte";
@@ -15,16 +13,12 @@ stdenv.mkDerivation rec {
   dontBuild = true;
 
   installPhase = ''
-#    mkdir -p $out/bin
-#    cp pihole $out/bin
-#
-#    mkdir -p $out/opt/pihole
-#    cp gravity.sh $out/opt/pihole
-#    cp advanced/Scripts/*.sh $out/opt/pihole
-#    cp advanced/Scripts/COL_TABLE $out/opt/pihole
-#
-#    mkdir -p $out/etc/bash_completion.d/
-#    cp advanced/bash-completion/pihole $out/etc/bash_completion.d/
+    mkdir -p $out/share/$name/www
+    cp *.php $out/share/$name/www
+    cp .user.php.ini $out/share/$name/www
+    cp -r scripts $out/share/$name/www
+    cp -r img $out/share/$name/www
+    cp -r style $out/share/$name/www
   '';
 
   meta = with stdenv.lib; {
