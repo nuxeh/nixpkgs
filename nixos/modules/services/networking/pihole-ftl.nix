@@ -18,7 +18,7 @@ in {
     users.users.pihole = {
       description = "Pi-hole user";
       group = "pihole";
-      home = cfg.stateDir;
+      home = stateDir;
       createHome = true;
       isSystemUser = true;
     };
@@ -30,7 +30,7 @@ in {
       wantedBy = [ "multi-user.target" ];
       serviceConfig = {
         User = "pihole";
-        StateDirectory = $stateDir;
+        StateDirectory = stateDir;
         AmbientCapabilities = [ "CAP_NET_BIND_SERVICE" "CAP_NET_RAW" "CAP_NET_ADMIN+eip" ];
         ExecStart = "${pkgs.pihole-ftl}/bin/pihole-FTL";
       };
