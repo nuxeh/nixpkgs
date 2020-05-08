@@ -90,8 +90,10 @@ in {
 
     services.pihole-ftl.enable = true;
 
-    environment.systemPackages = [ cfg.pihole-ftl ];
-    environment.systemPackages = [ cfg.pihole ];
+    environment.systemPackages = [
+      cfg.pihole
+      cfg.pihole-ftl
+    ];
 
   };
 }
