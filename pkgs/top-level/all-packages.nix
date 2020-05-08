@@ -2911,7 +2911,7 @@ in
 
   pihole-ftl = callPackage ../tools/networking/pihole-ftl { };
 
-  pihole-admin = callPackage ../servers/monitoring/pihole-admin/default.nix
+  pihole-admin = callPackage ../servers/monitoring/pihole-admin/default.nix {};
 
   wgetpaste = callPackage ../tools/text/wgetpaste { };
 
