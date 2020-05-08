@@ -79,7 +79,7 @@ in {
         Group = cfg.group;
         Restart = "always";
         ExecStart = ''
-          ${pkgs.domoticz}/domoticz -noupdates -www ${toString cfg.port} -wwwbind ${cfg.bind} -sslwww 0 -userdata ${cfg.stateDir} -pidfile /var/run/domoticz.pid
+          ${pkgs.domoticz}/bin/domoticz -noupdates -www ${toString cfg.port} -wwwbind ${cfg.bind} -sslwww 0 -userdata ${cfg.stateDir} -approot ${pkgs.domoticz}/share/domoticz/ -pidfile /var/run/domoticz.pid
         '';
       };
     };

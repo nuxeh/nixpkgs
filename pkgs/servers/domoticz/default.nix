@@ -24,7 +24,7 @@ stdenv.mkDerivation rec {
   src = fetchgit {
     url = "https://github.com/domoticz/domoticz.git";
     rev = "aad65002eea99b8336cefd773e7422f0a7f1873f";
-    sha256 = "0jwls2d8i3pwvxvhsmjmb8rfbaglmz7n961jynmmg3pvwj7lwy84";
+    sha256 = "06vi9ambn285z8v7n9h85lcx77nvw1s9h78719fll5czzmm250xx";
     deepClone = true;
     fetchSubmodules = true;
   };
@@ -64,8 +64,16 @@ stdenv.mkDerivation rec {
     "-DUSE_BUILTIN_MINIZIP=true"
   ];
 
-  postInstall = ''
-    wrapProgram $out/domoticz --set LD_LIBRARY_PATH ${python3}/lib;
+  installPhase = ''
+    mkdir -p $out/share/domoticz
+    cp -r $src/www $out/share/domoticz/
+    cp -r $src/Config $out/share/domoticz
+    cp -r $src/scripts $out/share/domoticz
+    cp -r $src/plugins $out/share/domoticz
+
+    mkdir -p $out/bin
+    cp domoticz $out/bin
+    wrapProgram $out/bin/domoticz --set LD_LIBRARY_PATH ${python3}/lib;
   '';
 
   meta = with stdenv.lib; {
