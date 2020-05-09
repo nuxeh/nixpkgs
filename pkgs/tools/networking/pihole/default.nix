@@ -14,6 +14,10 @@ stdenv.mkDerivation rec {
   dontConfigure = true;
   dontBuild = true;
 
+  patchPhase = ''
+    substituteInPlace pihole --replace "/opt/pihole" $out/opt/pihole
+  '';
+
   installPhase = ''
     mkdir -p $out/bin
     cp pihole $out/bin
