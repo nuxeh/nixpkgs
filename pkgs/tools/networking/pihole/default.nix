@@ -15,7 +15,23 @@ stdenv.mkDerivation rec {
   dontBuild = true;
 
   patchPhase = ''
-    substituteInPlace pihole --replace "/opt/pihole" $out/opt/pihole
+    #map
+    substituteInPlace pihole \
+      --replace /usr/local/bin $out/bin \
+      --replace /opt/pihole $out/opt/pihole \
+      --replace /etc/pihole $out/etc/pihole
+
+    substituteInPlace gravity.sh \
+      --replace /opt/pihole $out/opt/pihole \
+      --replace /etc/pihole $out/etc/pihole \
+      --replace /usr/local/bin $out/bin \
+      --replace "piholeDir=\"/etc/" "piholeDir=\"$out/etc/pihole/\""
+
+    substituteInPlace advanced/Scripts/piholeDebug.sh \
+      --replace /opt/pihole $out/opt/pihole \
+      --replace /etc/pihole $out/etc/pihole \
+      --replace /usr/local/bin $out/bin \
+      --replace "piholeDir=\"/etc/" "piholeDir=\"$out/etc/pihole/\""
   '';
 
   installPhase = ''
@@ -29,6 +45,8 @@ stdenv.mkDerivation rec {
 
     mkdir -p $out/etc/bash_completion.d/
     cp advanced/bash-completion/pihole $out/etc/bash_completion.d/
+
+    #wrapProgram $out/opt/gravity.sh --set piholeDir $out/etc/pihole;
   '';
 
   meta = with stdenv.lib; {
