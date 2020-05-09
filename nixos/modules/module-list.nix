@@ -140,6 +140,7 @@
   ./programs/nm-applet.nix
   ./programs/npm.nix
   ./programs/oblogout.nix
+  ./programs/pihole.nix
   ./programs/plotinus.nix
   ./programs/qt5ct.nix
   ./programs/screen.nix
