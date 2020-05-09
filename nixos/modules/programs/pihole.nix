@@ -18,7 +18,6 @@ in
 
       interface = mkOption {
         type = types.str;
-        default = "eth0";
         description = ''
           Network interface to run Pi-hole on.
         '';
