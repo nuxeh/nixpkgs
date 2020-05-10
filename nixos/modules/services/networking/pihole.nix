@@ -23,6 +23,12 @@ in
         '';
       };
 
+      webInterface = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Whether to enable Pi-hole's AdminLTE interface";
+      };
+
       ipv4 = mkOption {
         type = types.str;
         default = "127.0.0.1";
@@ -69,6 +75,10 @@ in
       pkgs.pihole
       pkgs.pihole-ftl
     ];
+
+    services.pihole-admin = mkIf cfg.webInterface {
+      enable = true;
+    };
 
   };
 
