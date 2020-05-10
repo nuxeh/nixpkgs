@@ -1,6 +1,5 @@
 { stdenv,
   fetchzip,
-  fetchgit,
   nettle,
   gmp,
   git
@@ -12,10 +11,9 @@ stdenv.mkDerivation rec {
   gitRef = "01332f610120f2611cd621372f66c18375033407";
   gitBranch = "release/${version}";
 
-  src = fetchgit {
-    url = "https://github.com/nuxeh/FTL.git";
-    rev = "${gitRef}";
-    sha256 = "0zbpkgy5pcwi6z1hsnf2y44g12wm8ja39nvb5iqshv3zip7nahfj";
+  src = fetchzip {
+    url = "https://github.com/pi-hole/FTL/archive/${version}.tar.gz";
+    sha256 = "1pz7azqi1mpxwgshnc4n8x07hkipl7h3808zcdpzwg0wrg3yp42s";
   };
 
   enableParallelBuilding = true;
@@ -25,6 +23,12 @@ stdenv.mkDerivation rec {
     gmp
     git
   ];
+
+  patchPhase = ''
+    # remove a couple of irrelevant usage strings - `service pihole-FTL start`
+    substituteInPlace src/args.c --replace 'printf("Usage:' '//printf("Usage:'
+    substituteInPlace src/args.c --replace 'printf("where ' '//printf("where '
+  '';
 
   preBuild = ''
     # Initialise a git repo to please the build system
