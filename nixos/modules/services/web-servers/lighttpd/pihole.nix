@@ -97,13 +97,13 @@ in {
           "X-Pi-hole" => "The Pi-hole Web interface is working!",
           "X-Frame-Options" => "DENY"
         )
-        #$HTTP["url"] =~ ".ttf$" {
-        #  setenv.add-response-header = ( "Access-Control-Allow-Origin" => "*" )
-        #}
+        $HTTP["url"] =~ ".ttf$" {
+          setenv.add-response-header = ( "Access-Control-Allow-Origin" => "*" )
+        }
       }
-      #$HTTP["url"] =~ "^/${cfg.subdir}/\.(.*)" {
-      #   url.access-deny = ("")
-      #}
+      $HTTP["url"] =~ "^/${cfg.subdir}/\.(.*)" {
+         url.access-deny = ("")
+      }
     '';
 
     systemd.services.lighttpd.preStart = ''
