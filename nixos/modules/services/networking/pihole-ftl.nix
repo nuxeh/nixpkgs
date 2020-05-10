@@ -13,11 +13,19 @@ in {
 
     enable = mkEnableOption "Pi-hole FTL";
 
+    openFirewall = mkOption {
+      type = types.bool;
+      default = true;
+      description = "Whether to open port 53.";
+    };
+
   };
 
   config = mkIf cfg.enable {
 
     environment.systemPackages = [ pkgs.pihole-ftl ];
+
+    services.dnsmasq.enable = false;
 
     systemd.services.pihole-ftl = {
       description = "Pi-hole FTL service";
@@ -25,14 +33,15 @@ in {
       serviceConfig = {
         User = "pihole";
         StateDirectory = stateDir;
-        AmbientCapabilities = [ "CAP_NET_BIND_SERVICE" "CAP_NET_RAW" "CAP_NET_ADMIN+eip" ];
+        CapabilityBoundingSet = [ "cap_net_bind_service" "cap_net_raw" "cap_net_admin+eip" ];
+        AmbientCapabilities = [ "cap_net_bind_service" "cap_net_raw" "cap_net_admin+eip" ];
         ExecStart = "${pkgs.pihole-ftl}/bin/pihole-FTL";
       };
     };
 
     system.activationScripts.pihole-ftl = ''
-      touch /var/lib/pihole-FTL.log
-      chown pihole:pihole /var/lib/pihole-FTL.log
+      touch /var/log/pihole-FTL.log
+      chown pihole:pihole /var/log/pihole-FTL.log
     '';
 
   };
