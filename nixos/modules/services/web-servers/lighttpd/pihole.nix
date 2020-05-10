@@ -33,17 +33,6 @@ in {
 
   config = mkIf cfg.enable {
 
-    users.users.pihole = {
-      description = "Pi-hole user";
-      group = "pihole";
-      home = cfg.stateDir;
-      createHome = true;
-      isSystemUser = true;
-      extraGroups = [ "lighttpd" ];
-    };
-
-    users.groups.pihole = {};
-
     services.phpfpm.pools.pihole-admin = {
       user = "lighttpd";
       phpOptions = ''
@@ -79,7 +68,7 @@ in {
     ];
 
     services.lighttpd.extraConfig = ''
-      index-file.names += ("index.php")
+      index-file.names += ( "index.php" )
       fastcgi.server = (
         ".php" => (
           "localhost" => (
@@ -110,19 +99,6 @@ in {
     '';
 
     services.lighttpd.enable = true;
-
-    systemd.services.pihole-admin = {
-      description = "Pi-hole AdminLTE interface";
-      after = ["networking.target"];
-      wantedBy = ["multi-user.target"];
-      serviceConfig = {
-        WorkingDirectory = cfg.stateDir;
-        User = "pihole";
-        ExecStart = "";
-      };
-      preStart = ''
-      '';
-    };
 
     environment.systemPackages = [
       pkgs.pihole-admin
