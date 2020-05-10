@@ -5,6 +5,7 @@ with lib;
 let
 
   cfg = config.services.pihole;
+  stateDir = "/var/lib/pihole";
 
 in
 
@@ -71,11 +72,19 @@ in
       LIGHTTPD_ENABLED=false
     '';
 
-    environment.systemPackages = [
-      pkgs.pihole
-      pkgs.pihole-ftl
-    ];
+    users.users.pihole = {
+      description = "Pi-hole user";
+      group = "pihole";
+      home = stateDir;
+      createHome = true;
+      isSystemUser = true;
+    };
 
+    users.groups.pihole = {};
+
+    environment.systemPackages = [ pkgs.pihole ];
+
+    services.pihole-ftl.enable = true;
     services.pihole-admin = mkIf cfg.webInterface {
       enable = true;
     };
