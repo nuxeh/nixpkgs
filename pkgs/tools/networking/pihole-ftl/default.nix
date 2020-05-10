@@ -32,6 +32,7 @@ stdenv.mkDerivation rec {
     git config user.name nixbld
     git config user.email nixbld
     git commit -m "Nix build ${version} at ${gitRef}"
+    git tag ${version}
 
     # override git variables
     makeFlagsArray+=(GIT_HASH="${gitRef}")
