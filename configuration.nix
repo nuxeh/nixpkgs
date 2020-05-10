@@ -19,9 +19,9 @@
     webInterface = true;
   };
 
-  services.pihole-admin = {
-    enable = true;
-  };
+  #services.pihole-admin = {
+  #  enable = true;
+  #};
 
   services.lighttpd.cgit.enable = true;
   services.lighttpd.gitweb.enable = true;
