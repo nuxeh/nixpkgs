@@ -4,7 +4,7 @@ with lib;
 
 let
 
-  cfg = config.programs.pihole;
+  cfg = config.services.pihole;
 
 in
 
@@ -12,7 +12,7 @@ in
 
   options = {
 
-    programs.pihole = {
+    services.pihole = {
 
       enable = mkEnableOption "pihole";
 
