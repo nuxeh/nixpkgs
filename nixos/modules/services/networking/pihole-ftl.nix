@@ -19,6 +19,18 @@ in {
       description = "Whether to open port 53.";
     };
 
+    config = mkOption {
+      type = types.str;
+      default = null;
+      example = ''
+
+      '';
+      description = ''
+        Configuration file content to provide for pihole-FTL. This configuration is
+        not compulsory, if not provided it will use default settings.
+      '';
+    };
+
   };
 
   config = mkIf cfg.enable {
@@ -26,6 +38,9 @@ in {
     environment.systemPackages = [ pkgs.pihole-ftl ];
 
     services.dnsmasq.enable = false;
+
+    # TODO: open firewall
+    # TODO: write out configuration
 
     systemd.services.pihole-ftl = {
       description = "Pi-hole FTL service";
@@ -36,12 +51,16 @@ in {
         CapabilityBoundingSet = [ "cap_net_bind_service" "cap_net_raw" "cap_net_admin+eip" ];
         AmbientCapabilities = [ "cap_net_bind_service" "cap_net_raw" "cap_net_admin+eip" ];
         ExecStart = "${pkgs.pihole-ftl}/bin/pihole-FTL";
+        PreStart = ''
+          # TODO
+        '';
       };
     };
 
     system.activationScripts.pihole-ftl = ''
       touch /var/log/pihole-FTL.log
       chown pihole:pihole /var/log/pihole-FTL.log
+      # TODO: as prestart
     '';
 
   };
