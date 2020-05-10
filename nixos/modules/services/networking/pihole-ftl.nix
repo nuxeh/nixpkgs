@@ -10,20 +10,14 @@ let
 in {
 
   options.services.pihole-ftl = {
+
     enable = mkEnableOption "Pi-hole FTL";
+
   };
 
   config = mkIf cfg.enable {
 
-    users.users.pihole = {
-      description = "Pi-hole user";
-      group = "pihole";
-      home = stateDir;
-      createHome = true;
-      isSystemUser = true;
-    };
-
-    users.groups.pihole = {};
+    environment.systemPackages = [ pkgs.pihole-ftl ];
 
     systemd.services.pihole-ftl = {
       description = "Pi-hole FTL service";
@@ -36,8 +30,14 @@ in {
       };
     };
 
-    environment.systemPackages = [ pkgs.pihole-ftl ];
+    system.activationScripts.pihole-ftl = ''
+      touch /var/lib/pihole-FTL.log
+      chown pihole:pihole /var/lib/pihole-FTL.log
+    '';
 
   };
+
+  # TODO
+  # - Get pihole user from pihole configuration
 
 }
