@@ -10,11 +10,12 @@ let
 in {
 
   options.services.pihole-admin = {
+
     enable = mkEnableOption "pihole-admin";
 
     subdir = mkOption {
       default = "pihole";
-      example = "";
+      example = "admin";
       type = types.str;
       description = ''
 	      The subdirectory in which to serve the Pi-hole admin interface. The
@@ -38,11 +39,35 @@ in {
       home = cfg.stateDir;
       createHome = true;
       isSystemUser = true;
+      extraGroups = [ "lighttpd" ];
     };
 
     users.groups.pihole = {};
 
+    services.phpfpm.pools.pihole-admin = {
+      user = "lighttpd";
+      phpOptions = ''
+        error_log = 'stderr'
+        log_errors = on
+        post_max_size = 25M
+        upload_max_filesize = 25M
+      '';
+      settings = mapAttrs (name: mkDefault) {
+        "listen.owner" = "lighttpd";
+        "listen.group" = "lighttpd";
+        "listen.mode" = "0660";
+        "pm" = "dynamic";
+        "pm.max_children" = 75;
+        "pm.start_servers" = 2;
+        "pm.min_spare_servers" = 1;
+        "pm.max_spare_servers" = 20;
+        "pm.max_requests" = 500;
+        "catch_workers_output" = true;
+      };
+    };
+
     services.lighttpd.enableModules = [
+      "mod_alias"
       "mod_access"
       "mod_auth"
       "mod_expire"
@@ -50,37 +75,49 @@ in {
       "mod_redirect"
       "mod_setenv"
       "mod_rewrite"
+      "mod_fastcgi"
     ];
 
     services.lighttpd.extraConfig = ''
+      fastcgi.server = (
+        ".php" => (
+          "localhost" => (
+            "socket" => "/run/phpfpm/pihole-admin.sock",
+            "broken-scriptfilename" => "enable"
+          )
+        )
+      )
+
+      index-file.names += ("index.php")
+
       $HTTP["url"] =~ "^/${cfg.subdir}" {
         alias.url = (
-          "/${cfg.subdir}" => "${pkgs.pihole-admin}/share/pihole-admin/www/index.php"
+          "/${cfg.subdir}" => "${pkgs.pihole-admin}/share/pihole-admin/www/index.php",
         )
         setenv.add-response-header = (
           "X-Pi-hole" => "The Pi-hole Web interface is working!",
           "X-Frame-Options" => "DENY"
         )
-        $HTTP["url"] =~ ".ttf$" {
-          setenv.add-response-header = ( "Access-Control-Allow-Origin" => "*" )
-        }
+        #$HTTP["url"] =~ ".ttf$" {
+        #  setenv.add-response-header = ( "Access-Control-Allow-Origin" => "*" )
+        #}
       }
-      $HTTP["url"] =~ "^/admin/\.(.*)" {
-         url.access-deny = ("")
-      }
+      #$HTTP["url"] =~ "^/${cfg.subdir}/\.(.*)" {
+      #   url.access-deny = ("")
+      #}
     '';
 
     systemd.services.lighttpd.preStart = ''
-      mkdir -p /var/cache/cgit
-      chown lighttpd:lighttpd /var/cache/cgit
     '';
+
+    services.lighttpd.enable = true;
 
     systemd.services.pihole-admin = {
       description = "Pi-hole AdminLTE interface";
       after = ["networking.target"];
       wantedBy = ["multi-user.target"];
       serviceConfig = {
-        WorkingDirectory = cfg.dataDir;
+        WorkingDirectory = cfg.stateDir;
         User = "pihole";
         ExecStart = "";
       };
@@ -88,11 +125,8 @@ in {
       '';
     };
 
-    services.pihole-ftl.enable = true;
-
     environment.systemPackages = [
-      cfg.pihole
-      cfg.pihole-ftl
+      pkgs.pihole-admin
     ];
 
   };
