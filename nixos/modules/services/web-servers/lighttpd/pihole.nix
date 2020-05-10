@@ -82,6 +82,9 @@ in {
           "/${cfg.subdir}/scripts/" => "${pkgs.pihole-admin}/share/pihole-admin/www/scripts/",
           "/${cfg.subdir}/" => "${pkgs.pihole-admin}/share/pihole-admin/www/",
         )
+        url.redirect = (
+          "^/${cfg.subdir}$" => "/${cfg.subdir}/"
+        )
         setenv.add-response-header = (
           "X-Pi-hole" => "The Pi-hole Web interface is working!",
           "X-Frame-Options" => "DENY"
