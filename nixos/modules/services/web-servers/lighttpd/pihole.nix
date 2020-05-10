@@ -79,6 +79,7 @@ in {
     ];
 
     services.lighttpd.extraConfig = ''
+      index-file.names += ("index.php")
       fastcgi.server = (
         ".php" => (
           "localhost" => (
@@ -87,12 +88,10 @@ in {
           )
         )
       )
-
-      index-file.names += ("index.php")
-
       $HTTP["url"] =~ "^/${cfg.subdir}" {
         alias.url = (
-          "/${cfg.subdir}" => "${pkgs.pihole-admin}/share/pihole-admin/www/index.php",
+          "/${cfg.subdir}/scripts/" => "${pkgs.pihole-admin}/share/pihole-admin/www/scripts/",
+          "/${cfg.subdir}/" => "${pkgs.pihole-admin}/share/pihole-admin/www/",
         )
         setenv.add-response-header = (
           "X-Pi-hole" => "The Pi-hole Web interface is working!",
