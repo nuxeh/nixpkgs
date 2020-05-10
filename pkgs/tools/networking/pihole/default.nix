@@ -32,6 +32,8 @@ stdenv.mkDerivation rec {
       --replace /etc/pihole $out/etc/pihole \
       --replace /usr/local/bin $out/bin \
       --replace "piholeDir=\"/etc/" "piholeDir=\"$out/etc/pihole/\""
+
+    substituteInPlace advanced/Scripts/version.sh --replace "-1" $version
   '';
 
   installPhase = ''
