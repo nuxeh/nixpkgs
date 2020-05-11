@@ -42,18 +42,22 @@ in {
     # TODO: open firewall
     # TODO: write out configuration
 
+    security.wrappers.pihole-FTL = {
+      source = "${pkgs.pihole-ftl}/bin/pihole-FTL";
+      capabilities = "cap_net_bind_service,cap_net_raw,cap_net_admin+eip";
+    };
+
     systemd.services.pihole-ftl = {
       description = "Pi-hole FTL service";
       wantedBy = [ "multi-user.target" ];
+      preStart = ''
+        # TODO
+      '';
       serviceConfig = {
         User = "pihole";
         StateDirectory = stateDir;
-        CapabilityBoundingSet = [ "cap_net_bind_service" "cap_net_raw" "cap_net_admin+eip" ];
-        AmbientCapabilities = [ "cap_net_bind_service" "cap_net_raw" "cap_net_admin+eip" ];
-        ExecStart = "${pkgs.pihole-ftl}/bin/pihole-FTL";
-        PreStart = ''
-          # TODO
-        '';
+        ExecStart = "/run/wrappers/bin/pihole-FTL";
+        ExecReload = "${pkgs.coreutils}/bin/kill -9 $MAINPID";
       };
     };
 
