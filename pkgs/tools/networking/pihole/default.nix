@@ -1,3 +1,4 @@
+# TODO: install man pages
 { stdenv,
   fetchzip,
 }:
