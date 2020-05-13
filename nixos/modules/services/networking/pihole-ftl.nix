@@ -56,8 +56,11 @@ in {
       serviceConfig = {
         User = "pihole";
         StateDirectory = stateDir;
-        ExecStart = "/run/wrappers/bin/pihole-FTL";
-        ExecReload = "${pkgs.coreutils}/bin/kill -9 $MAINPID";
+        #AmbientCapabilities = [ "cap_net_bind_service" "cap_net_raw" "cap_net_admin+eip" ];
+        ExecStart = "/run/wrappers/bin/pihole-FTL no-daemon";
+        #KillSignal = "SIGKILL";
+        #ExecReload = "${pkgs.coreutils}/bin/kill -9 $MAINPID";
+        Restart = "always";
       };
     };
 
