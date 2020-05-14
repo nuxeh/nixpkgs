@@ -26,7 +26,7 @@ stdenv.mkDerivation rec {
       --replace /opt/pihole $out/opt/pihole \
       --replace /etc/pihole $out/etc/pihole \
       --replace /usr/local/bin $out/bin \
-      --replace "piholeDir=\"/etc/" "piholeDir=\"$out/etc/pihole/\""
+      --replace "piholeDir=\"/etc/" "piholeDir=\"$out/etc/"
 
     substituteInPlace advanced/Scripts/piholeDebug.sh \
       --replace /opt/pihole $out/opt/pihole \
