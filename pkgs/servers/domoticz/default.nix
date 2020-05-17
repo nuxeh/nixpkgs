@@ -17,26 +17,29 @@
   cereal
 }:
 
+let
+  version = "2020.2";
+  minizip = "f5282643091dc1b33546bb8d8b3c23d78fdba231";
+
+  domoticz-src = fetchzip {
+    url = "https://github.com/domoticz/domoticz/archive/${version}.tar.gz";
+    sha256 = "1b4pkw9qp7f5r995vm4xdnpbwi9vxjyzbnk63bmy1xkvbhshm0g3";
+  };
+
+  minizip-src = fetchzip {
+    url = "https://github.com/domoticz/minizip/archive/${minizip}.tar.gz";
+    sha256 = "1vddrzm4pwl14bms91fs3mbqqjhcxrmpx9a68b6nfbs20xmpnsny";
+  };
+in
 stdenv.mkDerivation rec {
   name = "domoticz";
-  version = "2020.2";
+  inherit version;
 
-  srcs = [
-    (fetchzip {
-      url = "https://github.com/domoticz/domoticz/archive/${version}.tar.gz";
-      sha256 = "1b4pkw9qp7f5r995vm4xdnpbwi9vxjyzbnk63bmy1xkvbhshm0g3";
-      stripRoot = true;
-    })
-    (fetchzip {
-      url = "https://github.com/domoticz/minizip/archive/f5282643091dc1b33546bb8d8b3c23d78fdba231.tar.gz";
-      sha256 = "1vddrzm4pwl14bms91fs3mbqqjhcxrmpx9a68b6nfbs20xmpnsny";
-      name = "minizip";
-    })
-  ];
+  src = domoticz-src;
 
-  #postUnpack = ''
-
-  #'';
+  postUnpack = ''
+    cp -r ${minizip-src}/* $sourceRoot/extern/minizip
+  '';
 
   enableParallelBuilding = true;
 
