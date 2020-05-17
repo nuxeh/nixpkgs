@@ -1,5 +1,5 @@
 { stdenv,
-  fetchgit,
+  fetchzip,
   makeWrapper,
   cmake,
   python3,
@@ -21,13 +21,22 @@ stdenv.mkDerivation rec {
   name = "domoticz";
   version = "2020.2";
 
-  src = fetchgit {
-    url = "https://github.com/domoticz/domoticz.git";
-    rev = "aad65002eea99b8336cefd773e7422f0a7f1873f";
-    sha256 = "06vi9ambn285z8v7n9h85lcx77nvw1s9h78719fll5czzmm250xx";
-    deepClone = true;
-    fetchSubmodules = true;
-  };
+  srcs = [
+    (fetchzip {
+      url = "https://github.com/domoticz/domoticz/archive/${version}.tar.gz";
+      sha256 = "1b4pkw9qp7f5r995vm4xdnpbwi9vxjyzbnk63bmy1xkvbhshm0g3";
+      stripRoot = true;
+    })
+    (fetchzip {
+      url = "https://github.com/domoticz/minizip/archive/f5282643091dc1b33546bb8d8b3c23d78fdba231.tar.gz";
+      sha256 = "1vddrzm4pwl14bms91fs3mbqqjhcxrmpx9a68b6nfbs20xmpnsny";
+      name = "minizip";
+    })
+  ];
+
+  #postUnpack = ''
+
+  #'';
 
   enableParallelBuilding = true;
 
@@ -41,9 +50,9 @@ stdenv.mkDerivation rec {
     boost
     zlib
     curl
-    git
     libusb-compat-0_1
     cereal
+    git
   ];
 
   nativeBuildInputs = [
