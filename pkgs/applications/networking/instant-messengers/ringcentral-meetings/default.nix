@@ -3,8 +3,9 @@
 , fetchFromGitHub
 # Dynamic libraries
 , dbus, glib, libGL, libX11, libXfixes, libuuid, libxcb, qtbase, qtdeclarative
-, qtimageformats, qtlocation, qtquickcontrols, qtquickcontrols2, qtscript, qtsvg
-, qttools, qtwayland, qtwebchannel, qtwebengine
+, qtgraphicaleffects, qtimageformats, qtlocation, qtquickcontrols
+, qtquickcontrols2, qtscript, qtsvg , qttools, qtwayland, qtwebchannel
+, qtwebengine
 # Runtime
 , coreutils, libjpeg_turbo, pciutils, procps, utillinux, libv4l
 , pulseaudioSupport ? true, libpulseaudio ? null
@@ -15,7 +16,7 @@ assert pulseaudioSupport -> libpulseaudio != null;
 let
   inherit (stdenv.lib) concatStringsSep makeBinPath optional;
 
-  version = "19.3.286512.0827";
+  version = "19.4";
   srcs = {
     x86_64-linux = fetchurl {
       url = "http://dn.ringcentral.com/data/web/download/RCMeetings/1210/RCMeetingsClientSetup.deb";
@@ -32,9 +33,9 @@ in mkDerivation {
   nativeBuildInputs = [ dpkg autoPatchelfHook ];
 
   buildInputs = [
-    dbus glib libGL libX11 libXfixes libuuid libxcb libjpeg_turbo
-    qtbase qtdeclarative qtlocation qtquickcontrols qtquickcontrols2 qtscript
-    qtwebchannel qtwebengine qtimageformats qtsvg qttools qtwayland
+    dbus glib libGL libX11 libXfixes libuuid libxcb faac qtbase
+    qtdeclarative qtgraphicaleffects qtlocation qtquickcontrols qtquickcontrols2
+    qtscript qtwebchannel qtwebengine qtimageformats qtsvg qttools qtwayland
   ];
 
   runtimeDependencies = optional pulseaudioSupport libpulseaudio;
@@ -66,7 +67,10 @@ in mkDerivation {
       cp -ar ${files} $out/share/ringcentral-meetings
 
       # TODO Patch this somehow; tries to dlopen './libturbojpeg.so' from cwd
-      ln -s $(readlink -e "${libjpeg_turbo.out}/lib/libturbojpeg.so") $out/share/ringcentral-meetings/libturbojpeg.so
+      cp libturbojpeg.so $out/share/zoom-us/libturbojpeg.so
+
+      # Again, requires faac with a nonstandard filename.
+      ln -s $(readlink -e "${faac}/lib/libfaac.so") $out/share/zoom-us/libfaac1.so
 
       runHook postInstall
     '';
@@ -89,7 +93,6 @@ in mkDerivation {
 
   qtWrapperArgs = [
     ''--prefix PATH : ${makeBinPath [ coreutils glib.dev pciutils procps qttools.dev utillinux ]}''
-    ''--prefix LD_PRELOAD : ${libv4l}/lib/libv4l/v4l2convert.so''
     # --run "cd ${placeholder "out"}/share/ringcentral-meetings"
     # ^^ unfortunately, breaks run arg into multiple array elements, due to
     # some bad array propagation. We'll do that in bash below
