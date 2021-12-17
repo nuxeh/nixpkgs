@@ -18,7 +18,7 @@
 
 let
   pname = "url-bot-rs";
-  version = "0.3.1";
+  version = "nuxeh/nix-pr-additions";
   owner = "nuxeh";
   repo = pname;
 in
