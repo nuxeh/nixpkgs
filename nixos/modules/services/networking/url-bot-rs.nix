@@ -30,6 +30,15 @@ in
       '';
     };
 
+    basic = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Whether to use basic configuration options. If disabled, all
+        configurations can be provided via settings.
+      '';
+    };
+
     nickname = mkOption {
       type = types.str;
       default = "url-bot-rs";
@@ -75,7 +84,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    services.url-bot-rs.settings = {
+    services.url-bot-rs.settings = mkIf cfg.basic {
       connection = mapAttrs (name: mkDefault) {
         # These are the basic settings required to get the bot connected and joined.
         nickname = cfg.nickname;
