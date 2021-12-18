@@ -27,7 +27,7 @@ rustPlatform.buildRustPackage {
 
   src = fetchFromGitHub {
     inherit owner repo;
-    rev = "v${version}";
+    rev = "${version}";
     sha256 = "";
   };
 
