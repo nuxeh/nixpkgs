@@ -28,7 +28,7 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     inherit owner repo;
     rev = "v${version}";
-    sha256 = "AjV1GAT9PzIFjHaTK25AkdZBmqTdF5ygEQi0Rs1R5V8=";
+    sha256 = "";
   };
 
   cargoLock.lockFile = ./Cargo.lock;
