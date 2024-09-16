@@ -118,6 +118,7 @@ stdenv.mkDerivation (finalAttrs: {
     gi-docgen
     glib # for gdbus-codegen
     unifdef
+    #opencv
   ] ++ lib.optionals stdenv.isLinux [
     wayland-scanner
   ];
@@ -151,6 +152,7 @@ stdenv.mkDerivation (finalAttrs: {
     p11-kit
     sqlite
     woff2
+    opencv
   ] ++ lib.optionals stdenv.isDarwin [
     libedit
     readline
